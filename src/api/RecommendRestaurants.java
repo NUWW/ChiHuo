@@ -49,7 +49,7 @@ public class RecommendRestaurants extends HttpServlet {
 		JSONArray array = null;
 
 		if (request.getParameterMap().containsKey("user_id")) {
-			String userId = request.getParameter("user_id");
+			String userId = (String) session.getAttribute("user");
 			array = connection.recommendRestaurants(userId);
 		}
 		RpcParser.writeOutput(response, array);

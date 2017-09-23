@@ -53,7 +53,7 @@ public class VisitHistory extends HttpServlet {
 		try {
 			JSONArray array = null;
 			if (request.getParameterMap().containsKey("user_id")) {
-				String userId = request.getParameter("user_id");
+				String userId = (String) session.getAttribute("user");
 				Set<String> visited_business_id = connection.getVisitedRestaurants(userId);
 				array = new JSONArray();
 				for (String id : visited_business_id) {

@@ -52,7 +52,7 @@ public class SearchRestaurants extends HttpServlet {
 		JSONArray array = new JSONArray();
 		if (request.getParameterMap().containsKey("user_id") && request.getParameterMap().containsKey("lat")
 				&& request.getParameterMap().containsKey("lon")) {
-			String userId = request.getParameter("user_id");
+			String userId = (String) session.getAttribute("user");
 			double lat = Double.parseDouble(request.getParameter("lat"));
 			double lon = Double.parseDouble(request.getParameter("lon"));
 			// return some fake restaurants
