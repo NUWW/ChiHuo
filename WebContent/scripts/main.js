@@ -111,7 +111,26 @@
 
 	function onLoadPositionFailed() {
 		console.warn('navigator.geolocation is not available');
-		loadNearbyRestaurants();
+		getLocationFromIP();
+	}
+
+	function getLocationFromIP() {
+		//Get position from http://ipinfo.io/json
+		var url = 'http://ipinfo/json'
+		var req = null;
+		ajax('GET', url, req,
+			function(res) {
+				var result = JSON.parse(res);
+				if ('loc' in result) {
+					var loc = result.loc.split(",");
+					lat = loc[0];
+					lng = loc[1];
+				} else {
+					console.warn("Getting Location by IP failed");
+				}
+				loadNearbyRestaurants();
+			}
+		);
 	}
 
 	// -----------------------------------
